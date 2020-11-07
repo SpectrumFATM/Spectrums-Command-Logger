@@ -64,11 +64,13 @@ public class CommandLogger
         String command = commandEvent.getParseResults().getReader().getRead();
         String player = commandEvent.getParseResults().getContext().getSource().getDisplayName().getString();
 
-        if (!command.equals("/")) {
-            //File writer
-            FileWriter writer = new FileWriter("CommandLog.txt", true);
-            writer.append("\r\n[" + LocalTime.now() + "]" + "[" + player + "] " + command);
-            writer.close();
+        if (!player.equals("Server")) {
+            if (!command.equals("/")) {
+                //File writer
+                FileWriter writer = new FileWriter("CommandLog.txt", true);
+                writer.append("\r\n[" + LocalTime.now() + "]" + "[" + player + "] " + command);
+                writer.close();
+            }
         }
     }
 }
